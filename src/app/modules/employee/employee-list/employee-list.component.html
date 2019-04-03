@@ -1,0 +1,8 @@
+<h2>Employees</h2>
+<ol>
+  <li *ngFor="let employee of (data$ | async)?.employees">
+    <a class="d-block" [routerLink]="employee.id">
+      {{ employee.name }} ({{ employee.age }}), {{ employee.role }}
+    </a>
+  </li>
+</ol>
