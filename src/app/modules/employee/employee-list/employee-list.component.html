@@ -1,8 +1,19 @@
 <h2>Employees</h2>
+
 <ol>
-  <li *ngFor="let employee of (data$ | async)?.employees">
+  <li *ngFor="let employee of data$">
     <a class="d-block" [routerLink]="employee.id">
-      {{ employee.name }} ({{ employee.age }}), {{ employee.role }}
+      {{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }}), {{ employee.role }}
     </a>
   </li>
 </ol>
+
+<ngb-pagination
+  [collectionSize]="totalItems"
+  [(page)]="page"
+  [pageSize]="itemsPerPage"
+  [maxSize]="5"
+  [rotate]="true"
+  [boundaryLinks]="true"
+  (pageChange)="loadPage(page)"
+></ngb-pagination>

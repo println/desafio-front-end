@@ -1,7 +1,8 @@
 <h2>Employee</h2>
 <ul *ngIf="(data$ | async)?.employee; let employee">
-  <li>name: {{ employee.name }}</li>
+  <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>
   <li>age: {{ employee.age }}</li>
   <li>role: {{ employee.role }}</li>
   <li>id: {{ employee.id }}</li>
+  <li>updated: {{ employee.lastModified }}</li>
 </ul>

@@ -1,6 +1,9 @@
 export interface Employee {
   id: any;
-  name: string;
+  firstName: string;
+  lastName: string;
   age: number;
   role: string;
+  createdAt: Date;
+  lastModified: Date;
 }
