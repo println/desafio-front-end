@@ -1,5 +1,4 @@
 import { Params } from '@angular/router';
-import { ServerParamsFilter } from './server-params.filter';
 import { Direction } from './direction';
 
 export class ParamsBuilder {
@@ -9,7 +8,9 @@ export class ParamsBuilder {
   public direction: Direction = Direction.ASC;
 
   constructor(private params?: Params) {
-    params = ServerParamsFilter.filter(params);
+    if (!params) {
+      return;
+    }
     if (params.page) {
       this.page = parseInt(params.page, 10);
     }

@@ -7,7 +7,7 @@ import { ParamsBuilder } from './params.builder';
 
 export class PageBuilder {
   static build<T>(response: HttpResponse<T[]>, queryParams: Params): Page<T> {
-    if (Object.entries(response.body).length === 0) {
+    if (Object.entries(response.body).length === 0) {// minimal effect. see https://github.com/angular/angular/issues/17004
       return new Page<T>([], 0, 0, 0, new ParamsBuilder(queryParams));
     }
 

@@ -13,7 +13,7 @@ export class EmployeeListResolver implements Resolve<Page<Employee>> {
   constructor(private service: EmployeeService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Page<Employee>> {
-    const params = ServerParamsFilter.filter(route.queryParams);
+    const params = ServerParamsFilter.filter(route.queryParams, ['name', 'age', 'role']);
     return this.service.findAll(params);
   }
 }
