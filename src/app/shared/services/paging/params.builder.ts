@@ -6,30 +6,32 @@ export class ParamsBuilder {
   public size: number;
   public sort: string;
   public direction: Direction = Direction.ASC;
+  public domain?: Params;
 
-  constructor(private params?: Params) {
-    if (!params) {
+  constructor(private general?: Params) {
+    if (!general) {
       return;
     }
-    if (params.page) {
-      this.page = parseInt(params.page, 10);
+    if (general.page) {
+      this.page = parseInt(general.page, 10);
     }
-    if (params.size) {
-      this.size = parseInt(params.size, 10);
+    if (general.size) {
+      this.size = parseInt(general.size, 10);
     }
-    if (params.sort) {
-      if (params.sort.includes(',')) {
-        const sortKey = params.sort.split(',');
+    if (general.sort) {
+      if (general.sort.includes(',')) {
+        const sortKey = general.sort.split(',');
         this.sort = sortKey[0];
         this.direction = sortKey[1] === Direction.ASC ? Direction.ASC : Direction.DESC;
       } else {
-        this.sort = params.sort;
+        this.sort = general.sort;
       }
     }
+    this.domain = this.extractDomainParams(general);
   }
 
   public build(): Params {
-    let params = {};
+    let params = Object.assign({}, this.domain);
     if (this.page) {
       params = Object.assign(params, { page: this.page });
     }
@@ -45,10 +47,30 @@ export class ParamsBuilder {
         params = Object.assign(params, { sort: this.sort });
       }
     }
-    return params;
+    return this.extractValidParams(params);
   }
 
-  public clone() {
-    return Object.assign(new ParamsBuilder(), this);
+  public buildNew(): Params {
+    return this.extractValidParams(this.domain);
+  }
+
+  private extractValidParams(params): Params {
+    return Object.entries(params)
+      .filter(([k, v]) => {
+        return v !== null && v.toString().length > 0;
+      })
+      .reduce((obj, arr) => {
+        obj[arr[0]] = arr[1];
+        return obj;
+      }, {});
+  }
+
+  private extractDomainParams(params): Params {
+    return Object.entries(params)
+      .filter(([k, v]) => !['page', 'size', 'sort'].includes(k))
+      .reduce((obj, arr) => {
+        obj[arr[0]] = arr[1];
+        return obj;
+      }, {});
   }
 }

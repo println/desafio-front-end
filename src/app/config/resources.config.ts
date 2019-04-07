@@ -1,3 +1,4 @@
 export const RESOURCES = {
-  employee: '/employees'
+  employee: '/employees',
+  role: '/roles'
 }

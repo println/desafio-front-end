@@ -6,10 +6,6 @@ export class Page<T> {
     public total: number,
     public current: number,
     public size: number,
-    private paramsBuilder: ParamsBuilder
+    public params: ParamsBuilder
   ) {}
-
-  getParamsBuilder(): ParamsBuilder {
-    return this.paramsBuilder.clone();
-  }
 }

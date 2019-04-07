@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '@app/shared/models/employee.model';
 import { Page } from '@app/shared/services/paging';
 import { Observable } from 'rxjs/internal/Observable';
+import { ParamsBuilder } from '@app/shared/services/paging/params.builder';
+import { RoleService } from '@app/modules/employee/role.service';
 
 @Component({
   selector: '[stn-employee-list], stn-employee-list',
@@ -10,17 +12,30 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class EmployeeListComponent implements OnInit {
   data$: Observable<{ [name: string]: Page<Employee> }>;
+  roles$: Observable<string[]>;
 
-  constructor(private route: ActivatedRoute, protected router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    protected router: Router,
+    private roleService: RoleService
+  ) {}
 
   ngOnInit() {
     this.data$ = this.route.data;
+    this.roles$ = this.roleService.findAll();
   }
 
-  changePage(next: number, page: Page<Employee>) {
-    const builder = page.getParamsBuilder();
-    builder.page = next;
-    this.navigate(builder.build());
+  applyFilter(params: ParamsBuilder, name, age, role) {
+    params.domain.name = name;
+    params.domain.age = age;
+    params.domain.role = role;
+    this.navigate(params.buildNew());
+  }
+
+  changePage(page: Page<Employee>, nextPage: number) {
+    const params = page.params;
+    params.page = nextPage;
+    this.navigate(params.build());
   }
 
   private navigate(queryParams) {
@@ -28,5 +43,9 @@ export class EmployeeListComponent implements OnInit {
       relativeTo: this.route,
       queryParams
     });
+  }
+
+  valueChange(builder: ParamsBuilder) {
+    console.log(builder);
   }
 }

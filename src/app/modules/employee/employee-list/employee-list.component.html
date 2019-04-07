@@ -1,6 +1,28 @@
 <h2>Employees</h2>
-
 <div *ngIf="(data$ | async)?.page as page">
+  <form>
+    <h4>Filter</h4>
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" [ngModel]="page.params.domain.name" #filterName />
+    </div>
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" [ngModel]="page.params.domain.age" #filterAge />
+    </div>
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" name="role" [ngModel]="page.params.domain.role" #filterRole>
+        <option selected="selected" value=""></option>
+        <option *ngFor="let role of (roles$ | async)" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+    <button type="reset" value="Reset">Reset</button>
+    <button (click)="applyFilter(page.params, filterName.value, filterAge.value, filterRole.value)">
+      Apply
+    </button>
+  </form>
+
   <ol>
     <li *ngFor="let employee of page.records">
       <a class="d-block" [routerLink]="employee.id">
@@ -16,6 +38,6 @@
     [maxSize]="5"
     [rotate]="true"
     [boundaryLinks]="true"
-    (pageChange)="changePage($event, page)"
+    (pageChange)="changePage(page, $event)"
   ></ngb-pagination>
 </div>

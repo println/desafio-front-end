@@ -7,10 +7,6 @@ import { ParamsBuilder } from './params.builder';
 
 export class PageBuilder {
   static build<T>(response: HttpResponse<T[]>, queryParams: Params): Page<T> {
-    if (Object.entries(response.body).length === 0) {// minimal effect. see https://github.com/angular/angular/issues/17004
-      return new Page<T>([], 0, 0, 0, new ParamsBuilder(queryParams));
-    }
-
     const totalRecords: number = PageBuilder.extractTotal(response);
     const currentPage: number = PageBuilder.extractCurrent(response);
     const pageSize: number = PageBuilder.extractSize(response);
@@ -31,7 +27,7 @@ export class PageBuilder {
 
   private static extractCurrent<T>(response: HttpResponse<T[]>): number {
     const links: Links = parseLinkHeader(response.headers.get('link'));
-    let current: number;
+    let current: number = parseInt(links.first.page, 10);
     if (links.next) {
       current = parseInt(links.next.page, 10) - 1;
     } else if (links.prev) {
