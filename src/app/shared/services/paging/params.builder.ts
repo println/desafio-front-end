@@ -6,7 +6,7 @@ export class ParamsBuilder {
   public size: number;
   public sort: string;
   public direction: Direction = Direction.ASC;
-  public domain?: Params;
+  public domain?: Params = {};
 
   constructor(private general?: Params) {
     if (!general) {
@@ -30,7 +30,7 @@ export class ParamsBuilder {
     this.domain = this.extractDomainParams(general);
   }
 
-  public build(): Params {
+  build(): Params {
     let params = Object.assign({}, this.domain);
     if (this.page) {
       params = Object.assign(params, { page: this.page });
@@ -50,7 +50,7 @@ export class ParamsBuilder {
     return this.extractValidParams(params);
   }
 
-  public buildNew(): Params {
+  buildNew(): Params {
     return this.extractValidParams(this.domain);
   }
 

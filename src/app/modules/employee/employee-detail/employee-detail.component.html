@@ -1,8 +1,17 @@
 <h2>Employee</h2>
-<ul *ngIf="(data$ | async)?.employee as employee">
-  <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>
-  <li>age: {{ employee.age }}</li>
-  <li>role: {{ employee.role }}</li>
-  <li>id: {{ employee.id }}</li>
-  <li>updated: {{ employee.lastModified }}</li>
-</ul>
+<div *ngIf="(data$ | async)?.employee as employee">
+  <ul>
+    <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>
+    <li>age: {{ employee.age }}</li>
+    <li>role: {{ employee.role }}</li>
+    <li>id: {{ employee.id }}</li>
+    <li>updated: {{ employee.lastModified }}</li>
+  </ul>
+
+  <a routerLink="edit">
+    Edit
+  </a>
+  <button (click)="delete(employee)">
+    Delete
+  </button>
+</div>

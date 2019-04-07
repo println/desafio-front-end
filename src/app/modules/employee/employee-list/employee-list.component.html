@@ -1,4 +1,5 @@
 <h2>Employees</h2>
+<a routerLink="new">New Employee</a>
 <div *ngIf="(data$ | async)?.page as page">
   <form>
     <h4>Filter</h4>
@@ -28,6 +29,12 @@
       <a class="d-block" [routerLink]="employee.id">
         {{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }}), {{ employee.role }}
       </a>
+      <a [routerLink]="[employee.id, 'edit']">
+        Edit
+      </a>
+      <button (click)="delete(employee, $event)">
+        Delete
+      </button>
     </li>
   </ol>
 
