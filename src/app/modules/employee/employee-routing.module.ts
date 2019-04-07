@@ -13,8 +13,9 @@ const routes: Routes = [
         path: '',
         pathMatch: 'full',
         component: EmployeeListComponent,
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange',
         resolve: {
-          employees: EmployeeListResolver
+          page: EmployeeListResolver
         }
       },
       {

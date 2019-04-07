@@ -14,9 +14,24 @@ export class ErrorForwardingService {
 
   navigate(response: any): void {
     log.warn('Redirect to error page', response.status);
+    const message: string = this.getMessage(response);
     this.router.navigate([`/${ROUTES.error}/${response.status}`], {
       skipLocationChange: true, // minimal effect. see https://github.com/angular/angular/issues/17004
-      queryParams: { url: this.location.path(), message: response.statusText }
+      queryParams: { url: this.location.path(), message }
     });
+  }
+
+  private getMessage(response: any) {
+    if (!response.error) {
+      return response.statusText;
+    }
+
+    if (response.error.detail) {
+      return response.error.detail;
+    }
+
+    if (response.error.title) {
+      return response.error.title;
+    }
   }
 }

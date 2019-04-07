@@ -1,5 +1,5 @@
 <h2>Employee</h2>
-<ul *ngIf="(data$ | async)?.employee; let employee">
+<ul *ngIf="(data$ | async)?.employee as employee">
   <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>
   <li>age: {{ employee.age }}</li>
   <li>role: {{ employee.role }}</li>

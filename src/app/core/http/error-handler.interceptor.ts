@@ -41,6 +41,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         })
       );
     }
+
     throw response;
   }
 
