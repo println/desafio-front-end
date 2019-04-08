@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Employee } from '@app/shared/models/employee.model';
-import {EmployeeService} from '@app/modules/employee/employee.service';
-import {ROUTES} from '@app/config/routes.config';
+import { EmployeeService } from '@app/modules/employee/employee.service';
+import { ROUTES } from '@app/config/routes.config';
 
 @Component({
   selector: 'stn-employee-detail',
@@ -12,9 +12,11 @@ import {ROUTES} from '@app/config/routes.config';
 export class EmployeeDetailComponent implements OnInit {
   data$: Observable<{ [name: string]: Employee }>;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private employeeService: EmployeeService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private employeeService: EmployeeService
+  ) {}
 
   ngOnInit() {
     this.data$ = this.route.data;
@@ -31,10 +33,8 @@ export class EmployeeDetailComponent implements OnInit {
         this.router.navigate([ROUTES.employee]);
       },
       response => {
+        window.alert('DELETE call in error');
         console.log('DELETE call in error', response);
-      },
-      () => {
-        console.log('The DELETE observable is now completed.');
       }
     );
   }

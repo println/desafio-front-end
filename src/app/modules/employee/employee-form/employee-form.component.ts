@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Employee } from '@app/shared/models/employee.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '@app/modules/employee/employee.service';
 import { RoleService } from '@app/modules/employee/role.service';
-import {ROUTES} from '@app/config/routes.config';
+import { ROUTES } from '@app/config/routes.config';
 
 @Component({
   selector: 'stn-employee-form',
@@ -33,10 +33,8 @@ export class EmployeeFormComponent implements OnInit {
         this.router.navigate([ROUTES.employee, val.id]);
       },
       response => {
+        window.alert('CREATE call in error');
         console.log('CREATE call in error', response);
-      },
-      () => {
-        console.log('The CREATE observable is now completed.');
       }
     );
   }
@@ -48,10 +46,8 @@ export class EmployeeFormComponent implements OnInit {
         this.router.navigate([ROUTES.employee, val.id]);
       },
       response => {
+        window.alert('UPDATE call in error');
         console.log('UPDATE call in error', response);
-      },
-      () => {
-        console.log('The UPDATE observable is now completed.');
       }
     );
   }

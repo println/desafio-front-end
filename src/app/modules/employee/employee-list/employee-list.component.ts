@@ -60,10 +60,8 @@ export class EmployeeListComponent implements OnInit {
         this.load();
       },
       response => {
+        window.alert('DELETE call in error');
         console.log('DELETE call in error', response);
-      },
-      () => {
-        console.log('The DELETE observable is now completed.');
       }
     );
   }
