@@ -1,4 +1,7 @@
-<h2>Employee Form</h2>
+<header class="stn-title-bar">
+  <h2>Employee Form</h2>
+</header>
+
 <form *ngIf="(data$ | async)?.employee as employee">
   <h4 *ngIf="employee.id; else creationTitle">Edit</h4>
   <ng-template #creationTitle>

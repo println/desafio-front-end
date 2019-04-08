@@ -1,4 +1,7 @@
-<h2>Employee</h2>
+<header class="stn-title-bar">
+  <h2>Employee</h2>
+</header>
+
 <div *ngIf="(data$ | async)?.employee as employee">
   <ul>
     <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>

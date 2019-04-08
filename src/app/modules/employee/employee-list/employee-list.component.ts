@@ -8,7 +8,7 @@ import { RoleService } from '@app/modules/employee/role.service';
 import { EmployeeService } from '@app/modules/employee/employee.service';
 
 @Component({
-  selector: '[stn-employee-list], stn-employee-list',
+  selector: 'section[stn-employee-list], stn-employee-list',
   templateUrl: './employee-list.component.html'
 })
 export class EmployeeListComponent implements OnInit {

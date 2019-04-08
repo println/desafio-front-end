@@ -7,7 +7,7 @@ import { RoleService } from '@app/modules/employee/role.service';
 import { ROUTES } from '@app/config/routes.config';
 
 @Component({
-  selector: 'stn-employee-form',
+  selector: 'section[stn-employee-form], stn-employee-form',
   templateUrl: './employee-form.component.html'
 })
 export class EmployeeFormComponent implements OnInit {

@@ -1,40 +1,98 @@
-<h2>Employees</h2>
-<a routerLink="new">New Employee</a>
-<div *ngIf="(data$ | async)?.page as page">
-  <form>
+<header class="stn-title-bar">
+  <h2>Employees</h2>
+  <a routerLink="new" role="button" class="btn btn-primary">
+    <i class="fas fa-plus fa-fw"></i>
+    New Employee</a
+  >
+</header>
+
+<div *ngIf="(data$ | async)?.page as page" class="stn-fill">
+  <form
+    class="stn-tool-bar"
+    (submit)="applyFilter(page.params, filterName.value, filterAge.value, filterRole.value)"
+  >
     <h4>Filter</h4>
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" [ngModel]="page.params.domain.name" #filterName />
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          name="name"
+          [ngModel]="page.params.domain.name"
+          #filterName
+        />
+      </div>
+      <div class="col">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Age"
+          name="age"
+          [ngModel]="page.params.domain.age"
+          #filterAge
+        />
+      </div>
+      <div class="col">
+        <select
+          id="inputState"
+          class="form-control"
+          name="role"
+          [ngModel]="page.params.domain.role"
+          #filterRole
+        >
+          <option value="">Role...</option>
+          <option *ngFor="let role of (roles$ | async)" [value]="role">{{ role }}</option>
+        </select>
+      </div>
     </div>
-    <div>
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" [ngModel]="page.params.domain.age" #filterAge />
+    <div class="stn-action-bar">
+      <button type="reset" value="Reset" class="btn btn-outline-warning btn-sm">
+        <i class="fas fa-undo fa-fw"></i>
+        Reset
+      </button>
+      <button type="submit" class="btn btn-outline-primary">
+        <i class="fas fa-search fa-fw"></i>
+        Apply
+      </button>
     </div>
-    <div>
-      <label for="role">Role:</label>
-      <select id="role" name="role" [ngModel]="page.params.domain.role" #filterRole>
-        <option selected="selected" value=""></option>
-        <option *ngFor="let role of (roles$ | async)" [value]="role">{{ role }}</option>
-      </select>
-    </div>
-    <button type="reset" value="Reset">Reset</button>
-    <button (click)="applyFilter(page.params, filterName.value, filterAge.value, filterRole.value)">
-      Apply
-    </button>
   </form>
 
-  <ol>
-    <li *ngFor="let employee of page.records">
-      <a class="d-block" [routerLink]="employee.id">
-        {{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }}), {{ employee.role }}
-      </a>
-      <a [routerLink]="[employee.id, 'edit']">
-        Edit
-      </a>
-      <button (click)="delete(employee, $event)">
-        Delete
-      </button>
+  <ol class="stn-item-list">
+    <li *ngFor="let employee of page.records" class="stn-item" >
+      <figure class="stn-card">
+        <a [routerLink]="employee.id" class="stn-card-picture">
+          <img src="assets/images/default-profile.png"/>
+        </a>
+        <figcaption class="stn-card-content">
+          <div class="stn-item-info stn-card-content">
+            <div class="stn-item-info-content">
+              <a [routerLink]="employee.id" title="{{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }})">
+                <h6>{{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }})</h6>
+              </a>
+              <a [routerLink]="employee.id" title="{{ employee.role }}">
+                <span>{{ employee.role }}</span>
+              </a>
+            </div>
+            <div class="stn-action-bar">
+              <a role="button" class="btn btn-outline-primary btn-sm" [routerLink]="employee.id">
+                <i class="far fa-eye fa-tw"></i>
+                View
+              </a>
+              <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="[employee.id, 'edit']">
+                <i class="fas fa-pencil-alt fa-fw"></i>
+              </a>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                (click)="delete(employee, $event)"
+              >
+                <i class="far fa-trash-alt fa-fw"></i>
+              </button>
+            </div>
+          </div>
+        </figcaption>
+      </figure>
     </li>
   </ol>
 
@@ -42,7 +100,7 @@
     [collectionSize]="page.total"
     [page]="page.current"
     [pageSize]="page.size"
-    [maxSize]="5"
+    [maxSize]="3"
     [rotate]="true"
     [boundaryLinks]="true"
     (pageChange)="changePage(page, $event)"

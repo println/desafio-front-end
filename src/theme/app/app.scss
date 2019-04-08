@@ -11,6 +11,29 @@ h6 {
   font-size: 1.2em;
 }
 
+ul,
+ol {
+  @extend .list-unstyled;
+  padding: 0;
+  margin: 0;
+}
+
+//mixins
+@mixin card-frame {
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  margin: map-get($spacers, 1) !important;
+}
+
+@mixin text-ellipsis {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 //default
 body,
 html {
@@ -25,30 +48,37 @@ body {
   display: flex;
   flex-direction: column;
 
+  main.container {
+    padding: 0;
+
+    > *:not(:first-child) {
+      padding: 0 15px;
+    }
+  }
+
   main,
   #main {
     flex: 1;
     display: flex;
     flex-direction: column;
     min-height: min-content;
-    background-color: white;
     margin-top: map-get($spacers, 3);
     margin-bottom: map-get($spacers, 3);
 
     > section,
-    .fill {
+    .stn-fill {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .fill-row {
+    .stn-fill-row {
       flex: 1;
       display: flex;
       flex-direction: row;
     }
 
-    .child {
+    .stn-child {
       flex: 1;
     }
   }
@@ -70,12 +100,17 @@ body {
   min-height: min-content;
   text-align: center;
   font-size: 1.5em;
-  max-width: 600px;
   margin: 0 auto;
   padding: map-get($spacers, 4);
+  background-color: white;
+  @include card-frame;
 
   > *:not(:first-child) {
     margin-top: map-get($spacers, 4);
+  }
+
+  > p {
+    max-width: 600px;
   }
 
   > *:first-child {
@@ -111,20 +146,6 @@ body {
 }
 
 //customs
-.stn-card {
-  overflow: hidden;
-  margin: map-get($spacers, 1) !important;
-  padding: map-get($spacers, 2) !important;
-  background-color: white;
-
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-
-  &:not(:first-child) {
-    margin-top: 0 !important;
-  }
-}
-
 .stn-logo {
   margin: 0;
   @extend .text-white;
@@ -138,4 +159,95 @@ body {
   > *:first-child {
     color: white !important;
   }
+}
+
+.stn-title-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: map-get($spacers, 3);
+
+  > *:first-child {
+    font-size: 2em;
+  }
+}
+
+.stn-action-bar {
+  text-align: center;
+
+  > *:not(:first-child) {
+    margin-left: map-get($spacers, 1);
+  }
+}
+
+.stn-tool-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: map-get($spacers, 3);
+
+  > * {
+    margin: map-get($spacers, 1);
+  }
+}
+
+.stn-card {
+  @include card-frame;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .stn-card-picture {
+  }
+
+  .stn-card-content {
+    flex: 1;
+    padding: map-get($spacers, 2) !important;
+  }
+}
+
+.stn-item-list {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.stn-item {
+  display: flex;
+  flex-direction: column;
+
+  &, img{
+    width: 222px;
+  }
+
+  .stn-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .stn-item-info-content {
+    h6,
+    span {
+      @include text-ellipsis;
+    }
+
+    margin-bottom: map-get($spacers, 2) !important;
+  }
+}
+
+ngb-pagination {
+  margin-top: map-get($spacers, 3);
+  display: flex;
+  justify-content: center;
 }

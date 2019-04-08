@@ -6,7 +6,7 @@ import { EmployeeService } from '@app/modules/employee/employee.service';
 import { ROUTES } from '@app/config/routes.config';
 
 @Component({
-  selector: 'stn-employee-detail',
+  selector: 'section[stn-employee-detail], stn-employee-detail',
   templateUrl: './employee-detail.component.html'
 })
 export class EmployeeDetailComponent implements OnInit {

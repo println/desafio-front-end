@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: '[stn-error-page], stn-error-page',
+  selector: 'section[stn-error-page], stn-error-page',
   templateUrl: './error.component.html'
 })
 export class ErrorComponent implements OnInit {

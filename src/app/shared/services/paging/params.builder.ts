@@ -57,7 +57,7 @@ export class ParamsBuilder {
   private extractValidParams(params): Params {
     return Object.entries(params)
       .filter(([k, v]) => {
-        return v !== null && v.toString().length > 0;
+        return v !== null && v !== undefined && v.toString().length > 0;
       })
       .reduce((obj, arr) => {
         obj[arr[0]] = arr[1];

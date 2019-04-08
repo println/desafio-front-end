@@ -1,12 +1,12 @@
-@import "~bootstrap/scss/variables";
-
+@import '~bootstrap/scss/variables';
 
 @media all and (max-width: 767px) {
-  //import 'theme.mobile';
+  @import 'app/app.mobile';
 }
 
 @media all and (min-width: 768px) {
   //@import 'theme.desktop';
 }
 
-@import "app/app";
+@import 'chrome';
+@import 'app/app';
