@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/variables";
+
+
+@media all and (max-width: 767px) {
+  //import 'theme.mobile';
+}
+
+@media all and (min-width: 768px) {
+  //@import 'theme.desktop';
+}
+
+@import "app/app";

@@ -1,0 +1,141 @@
+//reset
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+  color: $title-color;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+//default
+body,
+html {
+  min-height: 100vh !important;
+  height: min-content;
+  background-color: $secondary;
+}
+
+body {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+
+  main,
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+    background-color: white;
+    margin-top: map-get($spacers, 3);
+    margin-bottom: map-get($spacers, 3);
+
+    > section,
+    .fill {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fill-row {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .child {
+      flex: 1;
+    }
+  }
+}
+
+[stn-header] {
+  text-align: center;
+  background-color: $primary;
+  padding: map-get($spacers, 3);
+}
+
+*[stn-home] {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: min-content;
+  text-align: center;
+  font-size: 1.5em;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: map-get($spacers, 4);
+
+  > *:not(:first-child) {
+    margin-top: map-get($spacers, 4);
+  }
+
+  > *:first-child {
+    font-size: 2em;
+    color: $primary;
+  }
+}
+
+*[stn-footer] {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-top: map-get($spacers, 3);
+
+  .stn-contact {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stn-copyright {
+    p {
+      padding: 0;
+      margin: 0;
+    }
+
+    color: $secondary;
+    background-color: #313131;
+    padding: map-get($spacers, 2);
+  }
+}
+
+//customs
+.stn-card {
+  overflow: hidden;
+  margin: map-get($spacers, 1) !important;
+  padding: map-get($spacers, 2) !important;
+  background-color: white;
+
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+
+  &:not(:first-child) {
+    margin-top: 0 !important;
+  }
+}
+
+.stn-logo {
+  margin: 0;
+  @extend .text-white;
+  @extend .text-decoration-none;
+  @extend .font-weight-bold;
+  font-size: 2em;
+  letter-spacing: -0.03em;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: white;
+
+  > *:first-child {
+    color: white !important;
+  }
+}
