@@ -37,6 +37,8 @@ ol {
 //default
 body,
 html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
   min-height: 100vh !important;
   height: min-content;
   background-color: $secondary;
@@ -145,6 +147,25 @@ body {
   }
 }
 
+*[stn-employee-detail]{
+  .stn-card{
+    margin-top: 121px!important;
+    overflow: visible;
+    text-align: center;
+    img{
+      background-color: cornsilk;
+      border: 10px solid white;
+      width: 222px;
+      height: 222px;
+      align-self: center;
+      border-radius: 50%;
+      margin-top: -111px;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+    }
+  }
+
+}
+
 //customs
 .stn-logo {
   margin: 0;
@@ -160,6 +181,24 @@ body {
     color: white !important;
   }
 }
+.stn-title{
+  text-transform: capitalize;
+  color: $primary;
+  font-weight: bold;
+
+  &.stn-big {
+    font-size: 1.7em;
+  }
+}
+
+.stn-sub-title{
+  font-size: 0.9em;
+  //font-weight: bold;
+  color: #777;
+  &.stn-big {
+    font-size: 1.1em;
+  }
+}
 
 .stn-title-bar {
   display: flex;
@@ -171,6 +210,7 @@ body {
 
   > *:first-child {
     font-size: 2em;
+    margin: 0;
   }
 }
 

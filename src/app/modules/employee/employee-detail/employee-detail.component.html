@@ -1,20 +1,25 @@
-<header class="stn-title-bar">
-  <h2>Employee</h2>
-</header>
-
 <div *ngIf="(data$ | async)?.employee as employee">
-  <ul>
-    <li>name: {{ employee.firstName }} {{ employee.lastName }}</li>
-    <li>age: {{ employee.age }}</li>
-    <li>role: {{ employee.role }}</li>
-    <li>id: {{ employee.id }}</li>
-    <li>updated: {{ employee.lastModified }}</li>
-  </ul>
+  <header class="stn-title-bar">
+    <h2>Employee</h2>
+    <div class="stn-action-bar">
+      <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="['edit']">
+        <i class="fas fa-pencil-alt fa-fw"></i>
+        Edit
+      </a>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(employee)">
+        <i class="far fa-trash-alt fa-fw"></i>
+        Delete
+      </button>
+    </div>
+  </header>
 
-  <a routerLink="edit">
-    Edit
-  </a>
-  <button (click)="delete(employee)">
-    Delete
-  </button>
+  <figure class="stn-card">
+    <img src="assets/images/default-profile.png" />
+    <figcaption class="stn-card-content">
+      <h3 class="stn-title stn-big">{{ employee.firstName }} {{ employee.lastName }}</h3>
+      <p class="stn-sub-title  stn-big" >{{ employee.role }}</p>
+      <p>age: {{ employee.age }}</p>
+      <p>updated: {{ employee.lastModified | date: 'medium'}}</p>
+    </figcaption>
+  </figure>
 </div>

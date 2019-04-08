@@ -1,26 +1,38 @@
 .stn-item-list {
   flex-direction: column !important;
   flex-wrap: nowrap !important;
-}
 
-.stn-item {
-  flex-direction: row !important;
-  width: 100% !important;
 
-  &,
-  img {
-    height: 120px !important;
+  .stn-item {
+    flex-direction: row !important;
+    width: 100% !important;
+
+    &,
+    img {
+      height: 120px !important;
+    }
+
+    img {
+      width: 120px !important;
+    }
+
+    .stn-action-bar {
+      text-align: left;
+    }
   }
 
-  img {
-    width: 120px !important;
+  .stn-card {
+    flex-direction: row !important;
   }
 
-  .stn-action-bar{
-    text-align: left;
-  }
-}
+  .stn-tool-bar {
+    .stn-action-bar {
+      width: 100%;
+      text-align: right;
+    }
 
-.stn-card {
-  flex-direction: row !important;
+    .col-md:not(:first-child) {
+      margin-top: map-get($spacers, 2);
+    }
+  }
 }

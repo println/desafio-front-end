@@ -13,7 +13,7 @@
   >
     <h4>Filter</h4>
     <div class="form-row">
-      <div class="col">
+      <div class="col-md">
         <input
           type="text"
           class="form-control"
@@ -23,7 +23,7 @@
           #filterName
         />
       </div>
-      <div class="col">
+      <div class="col-md">
         <input
           type="number"
           class="form-control"
@@ -33,7 +33,7 @@
           #filterAge
         />
       </div>
-      <div class="col">
+      <div class="col-md">
         <select
           id="inputState"
           class="form-control"
@@ -68,10 +68,10 @@
           <div class="stn-item-info stn-card-content">
             <div class="stn-item-info-content">
               <a [routerLink]="employee.id" title="{{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }})">
-                <h6>{{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }})</h6>
+                <h6 class="stn-title">{{ employee.firstName }} {{ employee.lastName }} ({{ employee.age }})</h6>
               </a>
               <a [routerLink]="employee.id" title="{{ employee.role }}">
-                <span>{{ employee.role }}</span>
+                <span class="stn-sub-title">{{ employee.role }}</span>
               </a>
             </div>
             <div class="stn-action-bar">
