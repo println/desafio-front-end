@@ -4,9 +4,5 @@
   @import 'app/app.mobile';
 }
 
-@media all and (min-width: 768px) {
-  //@import 'theme.desktop';
-}
-
-@import 'chrome';
 @import 'app/app';
+@import 'chrome';

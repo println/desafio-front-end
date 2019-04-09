@@ -163,9 +163,19 @@ body {
       box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
     }
   }
-
 }
-
+*[stn-employee-form]{
+  .stn-card{
+    padding: map-get($spacers, 3);
+  }
+  .form-row:not(:first-child){
+    margin-top: map-get($spacers, 2);
+  }
+  .stn-action-bar {
+    margin-top: map-get($spacers, 4);
+    text-align: right;
+  }
+}
 //customs
 .stn-logo {
   margin: 0;

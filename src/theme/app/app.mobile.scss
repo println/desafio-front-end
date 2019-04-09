@@ -1,28 +1,29 @@
-.stn-item-list {
-  flex-direction: column !important;
-  flex-wrap: nowrap !important;
+*[stn-employee-list] {
+  .stn-item-list {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
 
+    .stn-item {
+      flex-direction: row !important;
+      width: 100% !important;
 
-  .stn-item {
-    flex-direction: row !important;
-    width: 100% !important;
+      &,
+      img {
+        height: 120px !important;
+      }
 
-    &,
-    img {
-      height: 120px !important;
+      img {
+        width: 120px !important;
+      }
+
+      .stn-action-bar {
+        text-align: left;
+      }
     }
 
-    img {
-      width: 120px !important;
+    .stn-card {
+      flex-direction: row !important;
     }
-
-    .stn-action-bar {
-      text-align: left;
-    }
-  }
-
-  .stn-card {
-    flex-direction: row !important;
   }
 
   .stn-tool-bar {
@@ -31,8 +32,15 @@
       text-align: right;
     }
 
-    .col-md:not(:first-child) {
+    .form-row > *:not(:first-child) {
       margin-top: map-get($spacers, 2);
     }
+  }
+}
+
+*[stn-employee-form]{
+  .form-row > *:not(:first-child)
+  {
+    margin-top: map-get($spacers, 2);
   }
 }

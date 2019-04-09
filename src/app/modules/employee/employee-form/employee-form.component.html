@@ -1,40 +1,87 @@
-<header class="stn-title-bar">
-  <h2>Employee Form</h2>
-</header>
+<div *ngIf="(data$ | async)?.employee as employee">
+  <header class="stn-title-bar">
+    <h2 *ngIf="employee.id; else creationTitle">Edit employee</h2>
+    <ng-template #creationTitle>
+      <h4>Add new employee</h4>
+    </ng-template>
+  </header>
 
-<form *ngIf="(data$ | async)?.employee as employee">
-  <h4 *ngIf="employee.id; else creationTitle">Edit</h4>
-  <ng-template #creationTitle>
-    <h4>Create</h4>
-  </ng-template>
-  <div>
-    <label for="fistName">First Name:</label>
-    <input type="text" id="fistName" name="fistName" [(ngModel)]="employee.firstName" />
-  </div>
-  <div>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" [(ngModel)]="employee.lastName" />
-  </div>
-  <div>
-    <label for="age">Age:</label>
-    <input type="number" id="age" name="age" [(ngModel)]="employee.age" />
-  </div>
-  <div>
-    <label for="role">Role:</label>
-    <input type="text" id="role" name="role" [(ngModel)]="employee.role" #role />
+  <form (submit)="submit(employee)">
+    <div class="stn-card">
+      <div class="form-row">
+        <div class="col-md col-lg-4">
+          <label for="fistName">First Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            id="fistName"
+            name="fistName"
+            [(ngModel)]="employee.firstName"
+          />
+        </div>
+        <div class="col-md col-lg-4">
+          <label for="lastName">Last Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            id="lastName"
+            name="lastName"
+            [(ngModel)]="employee.lastName"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-2 col-lg-1">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            class="form-control"
+            required
+            id="age"
+            name="age"
+            [(ngModel)]="employee.age"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md col-lg-4">
+          <label for="role">Role:</label>
+          <input
+            type="text"
+            class="form-control"
+            required
+            id="role"
+            name="role"
+            [(ngModel)]="employee.role"
+            #role
+          />
+        </div>
+        <div class="col-md col-lg-4">
+          <label for="role">Role combo:</label>
+          <select class="custom-select" id="roleCombo" name="roleCombo" [(ngModel)]="employee.role">
+            <option selected="selected" value=""></option>
+            <option *ngFor="let role of (roles$ | async)" [value]="role">{{ role }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
 
-    <select id="roleCombo" name="roleCombo" [(ngModel)]="employee.role">
-      <option selected="selected" value=""></option>
-      <option *ngFor="let role of (roles$ | async)" [value]="role">{{ role }}</option>
-    </select>
-  </div>
-  <button type="reset" value="Reset">Reset</button>
-  <button (click)="update(employee)" *ngIf="employee.id; else creationButton">
-    Update
-  </button>
-  <ng-template #creationButton>
-    <button (click)="save(employee)">
-      Insert New
-    </button>
-  </ng-template>
-</form>
+    <div class="stn-action-bar">
+      <button type="reset" value="Reset" class="btn btn-outline-warning">
+        <i class="fas fa-undo fa-fw"></i>
+        Reset
+      </button>
+      <button type="submit" class="btn btn-primary btn-lg">
+        <i class="far fa-save fa-tw"></i>
+        <span *ngIf="employee.id; else creationButton">
+          Update
+        </span>
+      </button>
+      <ng-template #creationButton>
+        Insert New
+      </ng-template>
+    </div>
+  </form>
+</div>

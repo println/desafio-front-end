@@ -37,6 +37,7 @@ export class EmployeeListComponent implements OnInit {
     params.domain.age = age;
     params.domain.role = role;
     this.navigate(params.buildNew());
+    return false;
   }
 
   changePage(page: Page<Employee>, nextPage: number) {
@@ -46,12 +47,16 @@ export class EmployeeListComponent implements OnInit {
   }
 
   delete(employee: Employee, event: UIEvent) {
-    if (!confirm(`Are you sure to delete ${employee.firstName}  ${employee.lastName}?`)) {
+    if (!confirm(`Are you sure to delete ${employee.firstName} ${employee.lastName}?`)) {
       return;
     }
 
     const el = event.currentTarget as HTMLElement;
-    const parent = el.parentElement;
+    let parent = el.parentElement;
+
+    while (!parent.classList.contains('stn-item')) {
+      parent = parent.parentElement;
+    }
 
     this.employeeService.deleteById(employee).subscribe(
       val => {

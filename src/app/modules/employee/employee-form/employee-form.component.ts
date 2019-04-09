@@ -51,4 +51,13 @@ export class EmployeeFormComponent implements OnInit {
       }
     );
   }
+
+  submit(employee: Employee) {
+    if (employee.id) {
+      this.update(employee);
+    } else {
+      this.save(employee);
+    }
+    return false;
+  }
 }

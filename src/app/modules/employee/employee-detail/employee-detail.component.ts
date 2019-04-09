@@ -23,7 +23,7 @@ export class EmployeeDetailComponent implements OnInit {
   }
 
   delete(employee: Employee) {
-    if (!confirm(`Are you sure to delete ${employee.firstName}  ${employee.lastName}?`)) {
+    if (!confirm(`Are you sure to delete ${employee.firstName} ${employee.lastName}?`)) {
       return;
     }
 
