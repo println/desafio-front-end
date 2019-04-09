@@ -11,12 +11,13 @@ import { ErrorHandlerInterceptor } from '@app/core/http/error-handler.intercepto
 import { CacheInterceptor } from '@app/core/http/cache.interceptor';
 import { HttpService } from '@app/core/http/http.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, LoaderComponent, HomeComponent, ErrorComponent],
   exports: [HeaderComponent, FooterComponent, LoaderComponent, HomeComponent, ErrorComponent],
-  imports: [CommonModule, HttpClientModule, RouterModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, SharedModule],
   providers: [
     HttpCacheService,
     ApiPrefixInterceptor,

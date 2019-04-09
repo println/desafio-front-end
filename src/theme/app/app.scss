@@ -166,7 +166,7 @@ body {
 }
 *[stn-employee-form]{
   .stn-card{
-    padding: map-get($spacers, 3);
+    padding: map-get($spacers, 4);
   }
   .form-row:not(:first-child){
     margin-top: map-get($spacers, 2);
@@ -240,7 +240,7 @@ body {
   align-items: center;
   background-color: white;
   border-radius: 5px;
-  padding: 15px;
+  padding: map-get($spacers, 3);
   margin-bottom: map-get($spacers, 3);
 
   > * {

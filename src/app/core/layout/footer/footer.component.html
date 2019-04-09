@@ -1,14 +1,19 @@
 <div class="container stn-contact">
   <section>
-    <h4>Current Status</h4>
+    <h4>
+      <button (click)="load()" class="btn btn-light btn-sm">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+      Current Status
+    </h4>
     <p>
-      1000 Employees registered
+      {{total}} Employees registered
     </p>
   </section>
 
   <section>
     <h4>Support</h4>
-    <p>Help Desk: <a href="tel:+01-562-867-5309" rel="nofollow">1-562-867-5309</a></p>
+    <p><i class="fas fa-phone"></i> Help Desk: <a href="tel:+01-562-867-5309" rel="nofollow">1-562-867-5309</a></p>
   </section>
 </div>
 
